@@ -1,6 +1,6 @@
 import unittest
 from main import biconditional_elimination, implication_elimination, de_morgan_laws, delete_duplicates, \
-    NNF_to_DNF_transition, check_satisfiability
+    nnf_to_dnf_transition, check_satisfiability
 
 
 class TestBiconditionalElimination(unittest.TestCase):
@@ -241,22 +241,22 @@ class DeleteDuplicatesTest(unittest.TestCase):
 class NpnToApnTest(unittest.TestCase):
 
     def test_first_case(self):
-        self.assertEqual(NNF_to_DNF_transition('(~p|q)&(~q|p)'), '(~q&~p)|(~q&q)|(p&~p)|(p&q)')
+        self.assertEqual(nnf_to_dnf_transition('(~p|q)&(~q|p)'), '(~q&~p)|(~q&q)|(p&~p)|(p&q)')
 
     def test_second_case(self):
         self.assertEqual(
-            NNF_to_DNF_transition(
+            nnf_to_dnf_transition(
                 '(~p|~q|(p&r))&(~p|~r|(p&q))'
             ),
             '~p|(~p&~q)|(~p&p&r)|(~r&~p)|(~r&~q)|(~r&p&r)|(p&q&~p)|(p&q&~q)|(p&q&r)'
         )
 
     def test_third_case(self):
-        self.assertEqual(NNF_to_DNF_transition('(p&~q)|(q&~p)|(p&q)'), '(p&~q)|(q&~p)|(p&q)')
+        self.assertEqual(nnf_to_dnf_transition('(p&~q)|(q&~p)|(p&q)'), '(p&~q)|(q&~p)|(p&q)')
 
     def test_fourth_case(self):
         self.assertEqual(
-            NNF_to_DNF_transition(
+            nnf_to_dnf_transition(
                 'p&~q&(~p|q)'
             ),
             '(p&~q&~p)|(p&~q&q)'
@@ -264,7 +264,7 @@ class NpnToApnTest(unittest.TestCase):
 
     def test_fifth_case(self):
         self.assertEqual(
-            NNF_to_DNF_transition(
+            nnf_to_dnf_transition(
                 '((p&(~q|~r))|((~p|q)&(~p|r)))&((p&~q)|(p&~r)|~p|(q&r))'
             ),
             '(p&~q)|(p&~q&~r)|(p&~q&~p&q)|(p&~q&r&~p)|(p&~q&r&q)|(p&~r)|(p&~r&~p&q)|(p&~r&r&~p)|(p&~r&r&q)|('
@@ -273,7 +273,7 @@ class NpnToApnTest(unittest.TestCase):
 
     def test_sixth_case(self):
         self.assertEqual(
-            NNF_to_DNF_transition(
+            nnf_to_dnf_transition(
                 '(((p|q)&~r)|((~p|r)&(~q|r)))&((p&~r)|(q&~r)|(~p&~q)|r)'
             ),
             '(p&~r)|(p&~r&q)|(p&~r&~q&~p)|(p&~r&~q&r)|(p&~r&r&~p)|(p&~r&r)|(q&~r)|(q&~r&~q&~p)|(q&~r&~q&r)|('
@@ -282,7 +282,7 @@ class NpnToApnTest(unittest.TestCase):
 
     def test_seventh_case(self):
         self.assertEqual(
-            NNF_to_DNF_transition(
+            nnf_to_dnf_transition(
                 '(p&q&~r)|~p|r|~q'
             ),
             '(p&q&~r)|~p|r|~q'
@@ -290,7 +290,7 @@ class NpnToApnTest(unittest.TestCase):
 
     def test_eight_case(self):
         self.assertEqual(
-            NNF_to_DNF_transition(
+            nnf_to_dnf_transition(
                 '((p&~q)|(q&~p)|r)&(~r|((~p|q)&(~q|p)))'
             ),
             '(~r&p&~q)|(~r&q&~p)|(~r&r)|(~q&~p&p)|(~q&~p&q)|(~q&~p&r)|(~q&q&p)|(~q&q&r)|(p&~p&q)|(p&~p&r)|(p&q&r)'
@@ -298,7 +298,7 @@ class NpnToApnTest(unittest.TestCase):
 
     def test_ninth_case(self):
         self.assertEqual(
-            NNF_to_DNF_transition(
+            nnf_to_dnf_transition(
                 '(~p|((~r|q)&(~q|r)))&((r&~q)|(q&~r)|p)'
             ),
             '(r&~q&~p)|(r&~q&~r)|(r&~q&q)|(q&~r&~p)|(q&~r&~q)|(q&~r&r)|(p&~p)|(p&~q&~r)|(p&~q&q)|(p&r&~r)|(p&r&q)'

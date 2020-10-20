@@ -204,14 +204,14 @@ def de_morgan_laws(sentence):
     return sentence
 
 
-def NNF_to_DNF_transition(sentence):
+def nnf_to_dnf_transition(sentence):
     i = 0
     while i != len(sentence):
         try:
             if sentence[i] == '&' and (sentence[i + 1] == '(' or sentence[i - 1] == ')'):
                 left = get_side_of_sign(sentence, i - 1, -1, ')', '(', -1)[::-1]
                 right = get_side_of_sign(sentence, i + 1, len(sentence), '(', ')')
-                new_right = NNF_to_DNF_transition(right)
+                new_right = nnf_to_dnf_transition(right)
 
                 new_part = []
 
@@ -246,7 +246,7 @@ def NNF_to_DNF_transition(sentence):
     return delete_duplicates(sentence, True)
 
 
-def delete_duplicates(sentence, DNF=False):
+def delete_duplicates(sentence, dnf=False):
     def create_new_part(part_to_be_checked, sentence, sign):
         new_part = OrderedDict.fromkeys(part_to_be_checked[1:len(part_to_be_checked) - 1].split(f'{sign}'))
 
@@ -273,7 +273,7 @@ def delete_duplicates(sentence, DNF=False):
 
         return bracket
 
-    def delete_DNF_duplicates(sentence):
+    def delete_dnf_duplicates(sentence):
         sentence = [element for element in sentence.split('|')]
         new_sentence = [[] for element in sentence]
 
@@ -336,7 +336,7 @@ def delete_duplicates(sentence, DNF=False):
         if sorted(left) == sorted(right):
             sentence = sentence[1:i - 1]
 
-    return sentence if DNF == False else delete_DNF_duplicates(sentence)
+    return sentence if dnf == False else delete_dnf_duplicates(sentence)
 
 
 def check_satisfiability(sentence):
@@ -364,7 +364,7 @@ def main():
         sentence = implication_elimination(sentence)
         sentence = de_morgan_laws(sentence)
         sentence = delete_duplicates(sentence)
-        sentence = NNF_to_DNF_transition(sentence)
+        sentence = nnf_to_dnf_transition(sentence)
         print('Disjunctive normal form: ' + sentence)
         if check_satisfiability(sentence):
             print('Given formula is not satisfiable, because all its elementary component contain a pair of opposite '
