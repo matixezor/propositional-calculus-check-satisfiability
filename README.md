@@ -4,7 +4,7 @@ A script that checks if a given formula is satisfiable
 1. [About](#about)
 1. [Legend](#legend)
 1. [Example](#example)
-1. [How to use](#how)
+1. [How to use](#how-to-use)
 1. [Tests](#tests)
 ## About
 This script was created in order to solve the satisfiability problem. It outputs the formula in [disjunctive normal form](https://en.wikipedia.org/wiki/Disjunctive_normal_form)
