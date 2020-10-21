@@ -45,4 +45,4 @@ The verdict is that it is indeed satisfiable.
 ## How to use
 It's very simple to use it as it doesn't require any 3rd party libraries. Script was written in Python 3.8.1. There's no formula validation so make sure you input a correct formula.
 ## Tests
-There are tests written using unittest wchich are to ensure that any improvements or code refractoring won't generate wrong answers. There's 9 formulas wchich brings us to 54 unit tests.
+There are tests, written using unittest, which are to ensure that no code improvements would generate wrong answers. There's 9 formulas which brings us to 54 unit tests.
