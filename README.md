@@ -39,6 +39,7 @@ Formula: `(p<>q)>>p&q`
     `(p&~q)|~(~q|p)|(p&q)`  
 1. DeMorgan's laws  
     `(p&~q)|(q&~p)|(p&q)`  
+    
 Formula is now in disjunctive normal form and the script proceeds to check if it's satisfiable.  
 The verdict is that it is indeed satisfiable.
 ## How to use
